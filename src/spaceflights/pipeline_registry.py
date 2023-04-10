@@ -3,6 +3,9 @@ from typing import Dict
 
 from kedro.framework.project import find_pipelines
 from kedro.pipeline import Pipeline
+from spaceflights.pipelines import etl as etl
+from spaceflights.pipelines import ml as ml
+
 
 
 def register_pipelines() -> Dict[str, Pipeline]:
@@ -11,6 +14,12 @@ def register_pipelines() -> Dict[str, Pipeline]:
     Returns:
         A mapping from pipeline names to ``Pipeline`` objects.
     """
-    pipelines = find_pipelines()
-    pipelines["__default__"] = sum(pipelines.values())
-    return pipelines
+    etl_pipeline = etl.create_pipeline()
+    ml_pipeline = ml.create_pipeline()
+    
+    return {
+        "__default__": etl_pipeline + ml_pipeline,
+        "etl" : etl_pipeline,
+        "ml" : ml_pipeline
+        
+    }

@@ -5,6 +5,9 @@ isort~=5.0
 jupyter~=1.0
 jupyterlab~=3.0
 kedro~=0.18.3
+kedro[pandas.CSVDataSet, pandas.ExcelDataSet, pandas.ParquetDataSet]==0.18.3   # Specify optional Kedro dependencies
+kedro-viz~=5.0                                                                 # Visualise your pipelines
+scikit-learn~=1.0                                                              # For modelling in the data science pipeline
 kedro-telemetry~=0.2.0
 nbstripout~=0.4
 pytest-cov~=3.0
